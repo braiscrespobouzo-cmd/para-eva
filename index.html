@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Una pregunta importante</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #ff758c, #ff7eb3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .contenedor {
+            width: 90%;
+            max-width: 420px;
+            background: white;
+            padding: 35px 25px;
+            border-radius: 25px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+            animation: aparecer 0.8s ease;
+        }
+
+        h1 {
+            font-size: 32px;
+            color: #e63962;
+            margin-bottom: 15px;
+        }
+
+        h2 {
+            font-size: 26px;
+            color: #e63962;
+        }
+
+        p {
+            font-size: 18px;
+            line-height: 1.5;
+            color: #444;
+        }
+
+        button {
+            border: none;
+            padding: 15px 30px;
+            margin: 10px;
+            border-radius: 50px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .si {
+            background: #e63962;
+            color: white;
+        }
+
+        .si:hover {
+            transform: scale(1.08);
+        }
+
+        .no {
+            background: #eeeeee;
+            color: #444;
+        }
+
+        .no:hover {
+            transform: scale(1.05);
+        }
+
+        .torre {
+            width: 100%;
+            max-height: 300px;
+            object-fit: cover;
+            border-radius: 18px;
+            margin-top: 20px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+        }
+
+        .corazon {
+            font-size: 60px;
+            animation: latido 1.2s infinite;
+        }
+
+        .pequeno {
+            font-size: 13px;
+            color: #999;
+            margin-top: 20px;
+        }
+
+        .oculto {
+            display: none;
+        }
+
+        @keyframes aparecer {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes latido {
+            0%, 100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.15);
+            }
+        }
+
+        /* Corazones flotantes */
+        .flotante {
+            position: fixed;
+            bottom: -30px;
+            font-size: 25px;
+            animation: subir 6s linear infinite;
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        .f1 { left: 10%; animation-delay: 0s; }
+        .f2 { left: 30%; animation-delay: 2s; }
+        .f3 { left: 55%; animation-delay: 1s; }
+        .f4 { left: 80%; animation-delay: 3s; }
+
+        @keyframes subir {
+            from {
+                transform: translateY(0);
+                opacity: 0;
+            }
+
+            20% {
+                opacity: 0.7;
+            }
+
+            to {
+                transform: translateY(-110vh);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Corazones -->
+    <div class="flotante f1">❤️</div>
+    <div class="flotante f2">💕</div>
+    <div class="flotante f3">💗</div>
+    <div class="flotante f4">❤️</div>
+
+
+    <!-- PRIMERA PANTALLA -->
+    <div class="contenedor" id="inicio">
+
+        <div class="corazon">❤️</div>
+
+        <h1>Una pregunta importante...</h1>
+
+        <p>
+            Antes de continuar tienes que responder con sinceridad.
+        </p>
+
+        <h2>¿Te llamas Eva?</h2>
+
+        <button class="si" onclick="siEva()">
+            Sí 😇
+        </button>
+
+        <button class="no" onclick="noEva()">
+            No 😐
+        </button>
+
+    </div>
+
+
+    <!-- PANTALLA SI -->
+    <div class="contenedor oculto" id="eva">
+
+        <div class="corazon"></div>
+
+        <h1>lanzaroteña...</h1>
+
+        <p>
+            Perdóname, por favor.
+        </p>
+
+        <p>
+            y aaceptame en tu gran <strong>tercera cuenta de Instagram</strong> 🙏😭
+        </p>
+
+        <p>
+            Y te llevaré a...
+        </p>
+
+        <h2> La Torre de Hércules </h2>
+
+        <img
+            class="torre"
+            src="imagenes/images.jpg"
+            alt="Torre de Hércules">
+
+        <p>
+            ❤️
+        </p>
+
+        <p class="pequeno">
+            Prometo que merece la pena.
+        </p>
+
+    </div>
+
+
+    <!-- PANTALLA NO -->
+    <div class="contenedor oculto" id="mentirosa">
+
+        <div class="corazon">🤨</div>
+
+        <h1>ERES UNA MENTIROSILLA EHHH</h1>
+
+        <p>
+            sabes perfectamente que te llamas Eva.
+        </p>
+
+        
+
+        <button class="si" onclick="volver()">
+            Vale vale 
+        </button>
+
+    </div>
+
+
+    <script>
+
+        function siEva() {
+
+            document.getElementById("inicio").classList.add("oculto");
+
+            document.getElementById("eva").classList.remove("oculto");
+
+        }
+
+
+        function noEva() {
+
+            document.getElementById("inicio").classList.add("oculto");
+
+            document.getElementById("mentirosa").classList.remove("oculto");
+
+        }
+
+
+        function volver() {
+
+            document.getElementById("mentirosa").classList.add("oculto");
+
+            document.getElementById("inicio").classList.remove("oculto");
+
+        }
+
+    </script>
+
+</body>
+</html>
